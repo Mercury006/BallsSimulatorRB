@@ -46,7 +46,7 @@ public class BallCleaner : MonoBehaviour
                 }
 
                 // Se a cobertura chegar a 2% ou menos e as bolinhas ainda não foram removidas, remove todas as bolinhas
-                if (coverage <= 0f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
+                if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
                 {
                     RemoveAllBalls();
                     hasRemovedBalls = true; // Marca que as bolinhas foram removidas

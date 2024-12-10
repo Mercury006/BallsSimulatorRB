@@ -1,0 +1,4 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/ui/CustomControls.uss?fileID=7433441132597879392&amp;guid=364cba360e6fffb45a9becfa19e484bb&amp;type=3#CustomControls" />
+    <engine:Slider label="Slider" value="42" high-value="100" name="MySlider" style="background-size: 100% 80px; background-image: url(&quot;project://database/Assets/ui/rounded%20slider%201.png?fileID=2800000&amp;guid=a82c5d2f0e5de2245b484f8454cfdc76&amp;type=3#rounded slider 1&quot;);" />
+</engine:UXML>

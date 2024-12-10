@@ -4584,6 +4584,7 @@ GameObject:
   - component: {fileID: 1480380377}
   - component: {fileID: 1480380379}
   - component: {fileID: 1480380378}
+  - component: {fileID: 1480380380}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -4598,7 +4599,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480380376}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4648,6 +4649,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480380376}
   m_CullTransparentMesh: 1
+--- !u!225 &1480380380
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480380376}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1483586971
 GameObject:
   m_ObjectHideFlags: 0
@@ -6913,7 +6926,8 @@ MonoBehaviour:
   moveBallsOutOfScreen: {fileID: 2018784003}
   resetAllBalls: {fileID: 268976524}
   ballCleaner: {fileID: 214649642}
-  whiteCanvas: {fileID: 1480380376}
+  whiteCanvasGroup: {fileID: 1480380380}
+  fadeDuration: 2
 --- !u!4 &2018784002
 Transform:
   m_ObjectHideFlags: 0

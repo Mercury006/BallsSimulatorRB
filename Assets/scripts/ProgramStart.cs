@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ProgramStart : MonoBehaviour
 {
@@ -8,16 +9,20 @@ public class ProgramStart : MonoBehaviour
     public BallCleaner ballCleaner;
 
     [Header("Canvas de Tela Branca")]
-    public GameObject whiteCanvas; // Referência ao Canvas branco que cobre a tela
+    public CanvasGroup whiteCanvasGroup; // Referência ao CanvasGroup do Canvas branco
+
+    [Header("Configurações")]
+    public float fadeDuration = 2f; // Duração do fade-out em segundos
 
     void Start()
     {
         Debug.Log("Iniciando a sequência...");
 
         // Torna o Canvas branco visível ao iniciar
-        if (whiteCanvas != null)
+        if (whiteCanvasGroup != null)
         {
-            whiteCanvas.SetActive(true); // Exibe o Canvas branco
+            whiteCanvasGroup.gameObject.SetActive(true); // Garante que o Canvas está ativo
+            whiteCanvasGroup.alpha = 1f; // Define a opacidade inicial como 100%
         }
 
         // Move as bolas para fora da tela após 1 segundo
@@ -37,12 +42,28 @@ public class ProgramStart : MonoBehaviour
             moveBallsOutOfScreen.MoveBalls(); // Move as bolas para fora da tela
             Debug.Log("Bolas movidas para fora da tela.");
 
-            // Desativa o Canvas branco assim que as bolas forem movidas
-            if (whiteCanvas != null)
+            // Inicia o fade-out do Canvas branco
+            if (whiteCanvasGroup != null)
             {
-                whiteCanvas.SetActive(false); // Oculta o Canvas branco
+                StartCoroutine(FadeOutCanvas());
             }
         }
+    }
+
+    IEnumerator FadeOutCanvas()
+    {
+        float startAlpha = whiteCanvasGroup.alpha;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < fadeDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            whiteCanvasGroup.alpha = Mathf.Lerp(startAlpha, 0f, timeElapsed / fadeDuration);
+            yield return null;
+        }
+
+        whiteCanvasGroup.alpha = 0f; // Garante que a opacidade final é zero
+        whiteCanvasGroup.gameObject.SetActive(false); // Desativa o Canvas após o fade-out
     }
 
     void ActivateReset()

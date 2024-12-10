@@ -7,7 +7,7 @@ public class BallCleaner : MonoBehaviour
     public float coverageThreshold = 0.4f; // Percentual de cobertura para ativar o empurrão
 
     private bool isPushing = false; // Flag para verificar se as bolinhas estão sendo empurradas
-    private Vector3 pushDirection; // Direção em que as bolinhas serão empurradas
+    private bool hasRemovedBalls = false; // Flag para garantir que as bolinhas sejam removidas apenas uma vez
     private bool hasStartedChecking = false; // Para controlar quando iniciar a verificação
 
     void Start()
@@ -45,10 +45,11 @@ public class BallCleaner : MonoBehaviour
                     Debug.Log($"Cobertura atingiu {coverage * 100}%, empurrando as bolinhas para fora.");
                 }
 
-                // Se a cobertura chegar a 2% ou menos, remove todas as bolinhas
-                if (coverage <= 0.0001f && ballCoverageVisualizer.GetBalls().Length > 0)
+                // Se a cobertura chegar a 2% ou menos e as bolinhas ainda não foram removidas, remove todas as bolinhas
+                if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
                 {
                     RemoveAllBalls();
+                    hasRemovedBalls = true; // Marca que as bolinhas foram removidas
                 }
             }
 
@@ -72,7 +73,6 @@ public class BallCleaner : MonoBehaviour
             Vector3 screenPosition = mainCamera.WorldToScreenPoint(ball.transform.position);
 
             // Calcula a direção para empurrar a bolinha para fora da tela
-            // Aqui, vamos garantir que a direção seja para fora da tela, nunca em direção à câmera
             Vector3 directionToCenter = (screenPosition - new Vector3(Screen.width / 2, Screen.height / 2, 0)).normalized;
 
             // Direção para empurrar as bolinhas de volta para fora da tela
@@ -102,7 +102,6 @@ public class BallCleaner : MonoBehaviour
             if (ball != null)
             {
                 ball.SetActive(false); // Desativa a bolinha para removê-la da tela
-                // Ou, se preferir, pode destruí-la: Destroy(ball);
             }
         }
         Debug.Log("Todas as bolinhas foram removidas.");

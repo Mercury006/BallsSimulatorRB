@@ -632,7 +632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balls: []
   mainCamera: {fileID: 1823688466}
-  showCoverage: 1
+  showCoverage: 0
   coverageThreshold: 0.7
 --- !u!1 &249271109
 GameObject:
@@ -1830,7 +1830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &666625400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1838,15 +1838,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666625399}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd7045f971fde4d42a4de8d512a19668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ballCoverageVisualizer: {fileID: 214649644}
-  cubePrefab: {fileID: 7053305603541424191, guid: 480d4138ee9cc3f42af6385d598748aa, type: 3}
   coverageThreshold: 0.1
   cooldownTime: 5
+  sceneTransitionDelay: 2
 --- !u!4 &666625401
 Transform:
   m_ObjectHideFlags: 0

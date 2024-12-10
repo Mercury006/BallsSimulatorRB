@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement; // Para carregar cenas
 public class SceneTransitionOnCoverage : MonoBehaviour
 {
     public BallCoverageVisualizer ballCoverageVisualizer; // Referência ao visualizador da cobertura
-    public GameObject cubePrefab; // Prefab do cubo a ser instanciado
-    public float coverageThreshold = 0f; // Quando a cobertura for igual ou menor que isso, o cubo será spawnado
+    public float coverageThreshold = 0f; // Quando a cobertura for igual ou menor que isso, a cena será carregada
     public float cooldownTime = 5f; // Tempo de cooldown em segundos
+    public float sceneTransitionDelay = 2f; // Tempo de delay antes de carregar a cena
 
-    private bool hasSpawned = false; // Para garantir que apenas um cubo seja spawnado
+    private bool hasTransitioned = false; // Para garantir que a cena será carregada apenas uma vez
     private float cooldownTimer = 0f; // Timer para controlar o cooldown
 
     void Start()
@@ -19,6 +19,12 @@ public class SceneTransitionOnCoverage : MonoBehaviour
 
     void Update()
     {
+        if (ballCoverageVisualizer == null)
+        {
+            Debug.LogError("BallCoverageVisualizer não está atribuído. Verifique o Inspector.");
+            return;
+        }
+
         // Se o cooldown ainda não acabou, decrementa o tempo
         if (cooldownTimer > 0f)
         {
@@ -26,53 +32,42 @@ public class SceneTransitionOnCoverage : MonoBehaviour
         }
         else
         {
-            // Se o cooldown acabou, começamos a verificar a cobertura
-            if (ballCoverageVisualizer != null && !hasSpawned)
-            {
-                float coverage = ballCoverageVisualizer.CalculateCoveragePercentage();
+            // Verifica se a cobertura atingiu o limite
+            float coverage = ballCoverageVisualizer.CalculateCoveragePercentage();
+            Debug.Log($"Cobertura atual: {coverage * 100}%"); // Log para depuração
 
-                // Verifica se a cobertura atingiu 0% ou menos
-                if (coverage <= coverageThreshold)
-                {
-                    SpawnCubeAtCenter();
-                }
+            if (coverage <= coverageThreshold && !hasTransitioned)
+            {
+                StartSceneTransition();
             }
         }
     }
 
-    // Função para spawnar um cubo no centro da tela
-    void SpawnCubeAtCenter()
+    // Função para iniciar a transição de cena após o delay
+    void StartSceneTransition()
     {
-        if (cubePrefab != null)
+        if (!hasTransitioned)
         {
-            // Calcula a posição no centro da tela
-            Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 10f); // Distância da câmera (ajuste conforme necessário)
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenCenter);
+            hasTransitioned = true;
+            Debug.Log("Cobertura atingiu o limite, aguardando 2 segundos para carregar a cena...");
 
-            // Cria o cubo na posição central
-            Instantiate(cubePrefab, worldPosition, Quaternion.identity);
-            Debug.Log("Cubo spawnado no centro da tela.");
+            // Inicia o delay de 2 segundos antes de trocar a cena
+            Invoke(nameof(ChangeScene), sceneTransitionDelay);
+        }
+    }
 
-            // Marca que o cubo foi spawnado e não deve ser mais spawnado
-            hasSpawned = true;
-        }
-        else
-        {
-            Debug.LogError("Prefab do cubo não atribuído. Atribua um prefab de cubo no Inspector.");
-        }
+    // Função para trocar de cena
+    void ChangeScene()
+    {
+        Debug.Log("Carregando a cena 'Video Interacao'...");
+        SceneManager.LoadScene("Video Interacao"); // Carrega a cena chamada "Video Interacao"
     }
 
     // Função para iniciar o cooldown e começar a detecção
     public void StartCooldown()
     {
         cooldownTimer = cooldownTime; // Reseta o timer de cooldown
-        hasSpawned = false; // Garante que o cubo será spawnado
+        hasTransitioned = false; // Garante que a cena será carregada apenas uma vez
         Debug.Log("Cooldown iniciado. Aguardando 5 segundos para começar a detecção...");
-    }
-
-    // Função para trocar de cena (a ser chamada mais tarde)
-    void ChangeScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName); // Carrega a cena com o nome especificado
     }
 }

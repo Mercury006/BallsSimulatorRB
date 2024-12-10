@@ -33,8 +33,8 @@ public class MoveBallsOutOfScreen : MonoBehaviour
             Debug.Log($"Bola movida para: {randomPosition}");
         }
 
-        // Chama o reset após 2 segundos
-        Invoke("ActivateReset", 5f);
+        // Chama o reset após 2 segundos para evitar conflito com o movimento
+        Invoke("ActivateReset", 2f);
     }
 
     void ActivateReset()
@@ -44,12 +44,11 @@ public class MoveBallsOutOfScreen : MonoBehaviour
             resetAllBalls.EnableReset();
             Debug.Log("Reset ativado!");
         }
-    } 
+    }
 
     // Desenha Gizmos para visualizar a área onde as bolas podem ser movidas
     void OnDrawGizmos()
     {
-        // Define a cor do Gizmo
         Gizmos.color = Color.red;
 
         // Desenha um retângulo para representar a área onde as bolas podem ser movidas

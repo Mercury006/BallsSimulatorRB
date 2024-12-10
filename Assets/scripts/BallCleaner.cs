@@ -91,7 +91,7 @@ public class BallCleaner : MonoBehaviour
             // Checa novamente a cobertura da tela após o empurrão
             float coverage = ballCoverageVisualizer.CalculateCoveragePercentage();
 
-            if (coverage <= 0f)
+            if (coverage <= 0.02f)
             {
                 isPushing = false; // Para de empurrar as bolinhas quando a cobertura atingir 0%
                 Debug.Log("Cobertura da tela chegou a 0%, fim do empurrão.");

@@ -46,7 +46,7 @@ public class BallCleaner : MonoBehaviour
                 }
 
                 // Se a cobertura chegar a 2% ou menos e as bolinhas ainda não foram removidas, remove todas as bolinhas
-                if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
+                if (coverage <= 0f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
                 {
                     RemoveAllBalls();
                     hasRemovedBalls = true; // Marca que as bolinhas foram removidas
@@ -65,6 +65,8 @@ public class BallCleaner : MonoBehaviour
     {
         Camera mainCamera = ballCoverageVisualizer.mainCamera; // Usa a câmera principal referenciada no BallCoverageVisualizer
 
+        bool ballsPushed = false; // Flag para verificar se alguma bola foi empurrada
+
         foreach (GameObject ball in ballCoverageVisualizer.GetBalls())
         {
             if (ball == null) continue;
@@ -75,26 +77,35 @@ public class BallCleaner : MonoBehaviour
             // Calcula a direção para empurrar a bolinha para fora da tela
             Vector3 directionToCenter = (screenPosition - new Vector3(Screen.width / 2, Screen.height / 2, 0)).normalized;
 
-            // Direção para empurrar as bolinhas de volta para fora da tela
-            Vector3 pushDirection = directionToCenter;
-
             // Aplica a força para empurrar a bolinha
             Rigidbody ballRigidbody = ball.GetComponent<Rigidbody>();
             if (ballRigidbody != null)
             {
-                ballRigidbody.AddForce(pushDirection * pushForce, ForceMode.Impulse);
+                ballRigidbody.AddForce(directionToCenter * pushForce, ForceMode.Impulse);
+                ballsPushed = true;
             }
         }
 
-        // Checa novamente a cobertura da tela após o empurrão
-        if (ballCoverageVisualizer.CalculateCoveragePercentage() <= 0f)
+        if (ballsPushed)
         {
-            isPushing = false; // Para de empurrar as bolinhas quando a cobertura atingir 0%
-            Debug.Log("Cobertura da tela chegou a 0%, fim do empurrão.");
+            // Checa novamente a cobertura da tela após o empurrão
+            float coverage = ballCoverageVisualizer.CalculateCoveragePercentage();
+
+            if (coverage <= 0f)
+            {
+                isPushing = false; // Para de empurrar as bolinhas quando a cobertura atingir 0%
+                Debug.Log("Cobertura da tela chegou a 0%, fim do empurrão.");
+            }
+        }
+        else
+        {
+            // Se não houver mais bolinhas para empurrar, pare a ação
+            isPushing = false;
         }
     }
 
-    // Função para remover todas as bolinhas da tela
+
+    // Função para remover todas as bolinhas da tela e chamar a transição de cena
     void RemoveAllBalls()
     {
         foreach (GameObject ball in ballCoverageVisualizer.GetBalls())
@@ -105,5 +116,8 @@ public class BallCleaner : MonoBehaviour
             }
         }
         Debug.Log("Todas as bolinhas foram removidas.");
+
+        // Força a transição de cena após a remoção das bolinhas
+        FindFirstObjectByType<SceneTransition>()?.StartSceneTransition();
     }
 }

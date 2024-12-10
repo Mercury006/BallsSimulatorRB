@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement; // Para carregar cenas
 
-public class SceneTransitionOnCoverage : MonoBehaviour
+public class SceneTransition : MonoBehaviour
 {
     public BallCoverageVisualizer ballCoverageVisualizer; // Referência ao visualizador da cobertura
     public float coverageThreshold = 0f; // Quando a cobertura for igual ou menor que isso, a cena será carregada
@@ -11,13 +11,7 @@ public class SceneTransitionOnCoverage : MonoBehaviour
     private bool hasTransitioned = false; // Para garantir que a cena será carregada apenas uma vez
     private float cooldownTimer = 0f; // Timer para controlar o cooldown
 
-    void Start()
-    {
-        // Inicia o cooldown quando o script começar
-        StartCooldown();
-    }
-
-    void Update()
+    private void Update()
     {
         if (ballCoverageVisualizer == null)
         {
@@ -43,8 +37,7 @@ public class SceneTransitionOnCoverage : MonoBehaviour
         }
     }
 
-    // Função para iniciar a transição de cena após o delay
-    void StartSceneTransition()
+    public void StartSceneTransition()
     {
         if (!hasTransitioned)
         {
@@ -59,7 +52,7 @@ public class SceneTransitionOnCoverage : MonoBehaviour
     // Função para trocar de cena
     void ChangeScene()
     {
-        Debug.Log("Carregando a cena 'Video Interacao'...");
+        Debug.Log("Tentando carregar a cena 'Video Interacao'...");
         SceneManager.LoadScene("Video Interacao"); // Carrega a cena chamada "Video Interacao"
     }
 

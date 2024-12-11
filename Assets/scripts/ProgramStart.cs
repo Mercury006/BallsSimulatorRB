@@ -12,7 +12,7 @@ public class ProgramStart : MonoBehaviour
     public CanvasGroup whiteCanvasGroup; // Referência ao CanvasGroup do Canvas branco
 
     [Header("Configurações")]
-    public float fadeDuration = 2f; // Duração do fade-out em segundos
+    public float fadeDuration = 1f; // Duração do fade-out em segundos
 
     void Start()
     {

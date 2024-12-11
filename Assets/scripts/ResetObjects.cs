@@ -64,7 +64,7 @@ public class ResetAllBalls : MonoBehaviour
         HasCompleted = false;
         resetSpeed = 1f;
 
-        Invoke("DisableInitialReset", 5f); // Desliga o reset inicial após 5 segundos
+        Invoke("DisableInitialReset", 3f); // Desliga o reset inicial após 5 segundos
     }
 
     // Desliga o reset inicial e permite o reset manual novamente

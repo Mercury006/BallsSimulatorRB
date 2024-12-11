@@ -11,8 +11,8 @@ public class MoveBallsOutOfScreen : MonoBehaviour
 
     void Start()
     {
-        // Inicia o movimento das bolas após 1 segundo
-        Invoke("MoveBalls", 1f);
+        // Inicia o movimento das bolas após 1/2 segundo
+        Invoke(nameof(MoveBalls), 0.5f);
     }
 
     public void MoveBalls()
@@ -33,8 +33,8 @@ public class MoveBallsOutOfScreen : MonoBehaviour
             Debug.Log($"Bola movida para: {randomPosition}");
         }
 
-        // Chama o reset após 2 segundos para evitar conflito com o movimento
-        Invoke("ActivateReset", 2f);
+        // Chama o reset após 1 segundos para evitar conflito com o movimento
+        Invoke("ActivateReset", 1f);
     }
 
     void ActivateReset()

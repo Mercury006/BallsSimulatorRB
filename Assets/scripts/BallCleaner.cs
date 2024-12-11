@@ -95,11 +95,7 @@ if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls()
                 Debug.Log("Cobertura da tela chegou a 0%, fim do empurrão.");
             }
         }
-        else
-        {
-            // Se não houver mais bolinhas para empurrar, pare a ação
-            isPushing = false;
-        }
+
     }
 
 
@@ -117,8 +113,9 @@ if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls()
 
         // Força a transição de cena após a remoção das bolinhas
         //FindFirstObjectByType<SceneTransition>()?.ChangeScene();
-        ChangeScene();
+        Invoke(nameof(ChangeScene), 1f);
     }
+
     public void ChangeScene()
     {
         Debug.Log("Tentando carregar a cena 'Video Interacao'...");

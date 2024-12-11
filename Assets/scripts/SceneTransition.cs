@@ -1,36 +1,36 @@
 using UnityEngine;
+using UnityEngine.Video;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
-public class SceneTransition : MonoBehaviour
+public class VideoSceneTransition : MonoBehaviour
 {
-    public BallCoverageVisualizer ballCoverageVisualizer;
-    public float coverageThreshold = 0.02f;
-    public float cooldownTime = 5f;
-    public float sceneTransitionDelay = 2f;
+    public VideoPlayer videoPlayer;        // Referência ao VideoPlayer
+    public string nextSceneName;           // Nome da cena para a qual deseja trocar
+    public float delay = 0f;               // Delay adicional após o fim do vídeo (para testes)
 
-    private void Update()
+    void Start()
     {
-        if (ballCoverageVisualizer == null)
+        if (videoPlayer == null)
         {
-            Debug.LogError("BallCoverageVisualizer não está atribuído. Verifique o Inspector.");
+            Debug.LogError("VideoPlayer não está atribuído. Atribua um VideoPlayer no Inspector.");
             return;
         }
 
-
-        float coverage = ballCoverageVisualizer.CalculateCoveragePercentage();
-        Debug.Log($"Cobertura atual: {coverage * 100}%");
-
-        if (coverage <= coverageThreshold)
-        {
-            ChangeScene();
-        }
+        // Adiciona um listener para quando o vídeo terminar
+        videoPlayer.loopPointReached += OnVideoFinished;
     }
 
-
-    public void ChangeScene()
+    // Função chamada quando o vídeo termina
+    void OnVideoFinished(VideoPlayer vp)
     {
-        Debug.Log("Tentando carregar a cena 'Video Interacao'...");
-        SceneManager.LoadScene("Video Interacao");
+        Debug.Log("Vídeo terminou. Trocando de cena após delay...");
+        Invoke(nameof(ChangeScene), delay);
+    }
+
+    // Função para trocar de cena
+    void ChangeScene()
+    {
+        Debug.Log($"Carregando cena '{nextSceneName}'...");
+        SceneManager.LoadScene(nextSceneName);
     }
 }

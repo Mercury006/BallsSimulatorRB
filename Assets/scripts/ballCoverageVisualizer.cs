@@ -31,18 +31,12 @@ public class BallCoverageVisualizer : MonoBehaviour
 
     void Update()
     {
-        if (balls != null && balls.Length > 0)
+        if (balls != null && balls.Length > 0 && showCoverage)
         {
             float coverage = CalculateCoveragePercentage();
-            if (showCoverage)
-            {
-                Debug.Log($"Cobertura da tela por bolinhas: {coverage * 100}%");
-            }
+            Debug.Log($"Cobertura da tela por bolinhas: {coverage * 100}%");
         }
-        else
-        {
-            Debug.Log("Nenhuma bolinha encontrada.");
-        }
+
     }
 
     // Função que calcula a porcentagem da tela coberta pelas bolinhas

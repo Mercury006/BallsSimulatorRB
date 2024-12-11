@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class BallCleaner : MonoBehaviour
 {
@@ -34,24 +36,20 @@ public class BallCleaner : MonoBehaviour
         if (hasStartedChecking)
         {
             // Verifica a porcentagem de cobertura atingiu o limite
-            if (ballCoverageVisualizer != null)
-            {
-                float coverage = ballCoverageVisualizer.CalculateCoveragePercentage();
+            float coverage = ballCoverageVisualizer.CalculateCoveragePercentage();
 
-                // Começa a empurrar as bolinhas quando a cobertura for inferior ao limite configurado
-                if (coverage < coverageThreshold && !isPushing)
-                {
-                    isPushing = true;
-                    Debug.Log($"Cobertura atingiu {coverage * 100}%, empurrando as bolinhas para fora.");
-                }
+if (coverage < coverageThreshold && !isPushing)
+{
+    isPushing = true;
+    Debug.Log($"Cobertura atingiu {coverage * 100}%, empurrando as bolinhas para fora.");
+}
 
-                // Se a cobertura chegar a 2% ou menos e as bolinhas ainda não foram removidas, remove todas as bolinhas
-                if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
-                {
-                    RemoveAllBalls();
-                    hasRemovedBalls = true; // Marca que as bolinhas foram removidas
-                }
-            }
+if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
+{
+    RemoveAllBalls();
+    hasRemovedBalls = true;
+}
+
 
             if (isPushing)
             {
@@ -118,6 +116,12 @@ public class BallCleaner : MonoBehaviour
         Debug.Log("Todas as bolinhas foram removidas.");
 
         // Força a transição de cena após a remoção das bolinhas
-        FindFirstObjectByType<SceneTransition>()?.StartSceneTransition();
+        //FindFirstObjectByType<SceneTransition>()?.ChangeScene();
+        ChangeScene();
+    }
+    public void ChangeScene()
+    {
+        Debug.Log("Tentando carregar a cena 'Video Interacao'...");
+        SceneManager.LoadScene("Video Interacao");
     }
 }

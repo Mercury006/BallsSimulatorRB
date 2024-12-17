@@ -9,7 +9,7 @@ public class VideoTimeDisplay : MonoBehaviour
     public Text timeText;            // Referência ao componente UI Text para exibir o tempo
     public VideoClip[] videoClips;   // Array de VideoClips para selecionar aleatoriamente
     public CanvasGroup canvasGroup;  // Referência ao CanvasGroup para controle de fade (se usar UI)
-    public float fadeDuration = 1f;  // Duração do fade in
+    public float fadeDuration = 0f;  // Duração do fade in
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class VideoTimeDisplay : MonoBehaviour
             Debug.LogError("Referências não atribuídas corretamente. Verifique o Inspector.");
             return;
         }
-
+         
         // Seleciona um vídeo aleatório da lista de VideoClips
         VideoClip randomVideoClip = videoClips[Random.Range(0, videoClips.Length)];
 
@@ -27,7 +27,7 @@ public class VideoTimeDisplay : MonoBehaviour
         videoPlayer.clip = randomVideoClip;
 
         // Inicia o fade in do vídeo
-        StartCoroutine(FadeInVideo());
+        //StartCoroutine(FadeInVideo());
 
         // Inicia a reprodução do vídeo
         videoPlayer.Play();
@@ -62,7 +62,7 @@ public class VideoTimeDisplay : MonoBehaviour
     }
 
     // Coroutine para realizar o fade in
-    IEnumerator FadeInVideo()
+   /* IEnumerator FadeInVideo()
     {
         float elapsedTime = 0f;
 
@@ -79,5 +79,5 @@ public class VideoTimeDisplay : MonoBehaviour
 
         // Assegura que a opacidade final será 1
         canvasGroup.alpha = 1f;
-    }
+    }*/
 }

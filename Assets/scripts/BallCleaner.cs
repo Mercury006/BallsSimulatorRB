@@ -14,6 +14,7 @@ public class BallCleaner : MonoBehaviour, IBallCleaner
     private bool hasStartedChecking = false; // Para controlar quando iniciar a verificação
     public SmoothTransition smoothtransiton;
 
+    public StandBy standby;
     void Start()
     {
         // Iniciar o atraso para começar a verificar a cobertura
@@ -39,10 +40,13 @@ public class BallCleaner : MonoBehaviour, IBallCleaner
                 isPushing = true;
                 Debug.Log($"Cobertura atingiu {coverage * 100}%, empurrando as bolinhas para fora.");
             }
-
+            if (coverage <= 0.05f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
+            {
+                Invoke(nameof(RemoveAllBalls), 8f);
+            }
             if (coverage <= 0.02f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
             {
-                Invoke(nameof(RemoveAllBalls), 4f);
+                Invoke(nameof(RemoveAllBalls), 3f);
             }
             if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
             {
@@ -99,6 +103,7 @@ public class BallCleaner : MonoBehaviour, IBallCleaner
         // Força a transição de cena após a remoção das bolinhas
         //FindFirstObjectByType<SceneTransition>()?.ChangeScene();
         Invoke(nameof(ChangeSceneWithSmoothTransition), 1f);
+        standby.DisableStandBy();
     }
     void ChangeSceneWithSmoothTransition() => smoothtransiton.ChangeScene();
 }

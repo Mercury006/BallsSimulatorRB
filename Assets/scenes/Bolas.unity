@@ -1823,30 +1823,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 666625401}
-  - component: {fileID: 666625400}
+  - component: {fileID: 666625402}
   m_Layer: 0
   m_Name: SceneTransition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &666625400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666625399}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd7045f971fde4d42a4de8d512a19668, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballCoverageVisualizer: {fileID: 214649644}
-  coverageThreshold: 0.1
-  cooldownTime: 5
-  sceneTransitionDelay: 2
+  m_IsActive: 1
 --- !u!4 &666625401
 Transform:
   m_ObjectHideFlags: 0
@@ -1862,6 +1846,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &666625402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666625399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44debdb14dec1642a86707900f97d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cleaner: {fileID: 0}
 --- !u!1 &706449159
 GameObject:
   m_ObjectHideFlags: 0

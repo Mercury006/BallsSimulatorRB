@@ -12,7 +12,7 @@ public class MoveBallsOutOfScreen : MonoBehaviour
     void Start()
     {
         // Inicia o movimento das bolas após 1/2 segundo
-        Invoke(nameof(MoveBalls), 0.5f);
+        Invoke(nameof(MoveBalls), 0.1f);
     }
 
     public void MoveBalls()

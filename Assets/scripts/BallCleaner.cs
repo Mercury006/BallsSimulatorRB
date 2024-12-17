@@ -59,7 +59,7 @@ if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls()
     }
 
     // Empurra todas as bolinhas para fora da tela
-    void PushBallsOutOfScreen()
+    public void PushBallsOutOfScreen()
     {
         Camera mainCamera = ballCoverageVisualizer.mainCamera; // Usa a câmera principal referenciada no BallCoverageVisualizer
 

@@ -12,7 +12,7 @@ public class ProgramStart : MonoBehaviour
     public CanvasGroup whiteCanvasGroup; // Referência ao CanvasGroup do Canvas branco
 
     [Header("Configurações")]
-    public float fadeDuration = 1f; // Duração do fade-out em segundos
+    public float fadeDuration = 0.3f; // Duração do fade-out em segundos
 
     void Start()
     {
@@ -26,13 +26,13 @@ public class ProgramStart : MonoBehaviour
         }
 
         // Move as bolas para fora da tela após 1 segundo
-        Invoke(nameof(MoveBallsOut), 1f);
+        Invoke(nameof(MoveBallsOut), 0.01f);
 
         // Ativa o reset após 4 segundos
-        Invoke(nameof(ActivateReset), 4f);
+        Invoke(nameof(ActivateReset), 3f);
 
         // Ativa o BallCleaner após 14 segundos (4s + 10s)
-        Invoke(nameof(ActivateBallCleaner), 14f);
+        Invoke(nameof(ActivateBallCleaner), 10f);
     }
 
     void MoveBallsOut()

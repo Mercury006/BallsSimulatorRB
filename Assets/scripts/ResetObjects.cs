@@ -69,7 +69,7 @@ public class ResetAllBalls : MonoBehaviour
         IsInitialReset = true;
         isResetting = true;
         HasCompleted = false;
-        resetSpeed = 10f;
+        resetSpeed = 1f;
 
         Invoke(nameof(DisableInitialReset), 3f);
     }

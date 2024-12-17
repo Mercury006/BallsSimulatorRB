@@ -155,7 +155,7 @@ public class PauseMenu : MonoBehaviour
         falloffSlider.value = PlayerPrefs.GetFloat("Falloff", forceFieldManager.falloffStrength);
         smoothnessSlider.value = PlayerPrefs.GetFloat("Smoothness", forceFieldManager.smoothness);
         impulseSlider.value = PlayerPrefs.GetFloat("Impulse", forceFieldManager.impulseMultiplier);
-        resetSpeedSlider.value = PlayerPrefs.GetFloat("ResetSpeed", resetAllBalls.resetSpeed);
+        //resetSpeedSlider.value = PlayerPrefs.GetFloat("ResetSpeed", resetAllBalls.resetSpeed);
     }
 
     public void QuitGame()

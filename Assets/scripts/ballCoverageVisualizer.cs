@@ -10,7 +10,6 @@ public class BallCoverageVisualizer : MonoBehaviour
 
     [Header("Exibição da Cobertura")]
     public bool showCoverage = true; // Flag para mostrar a cobertura no console
-    public float coverageThreshold = 0.7f; // Threshold para exibir no console (70% por exemplo)
 
     void Start()
     {

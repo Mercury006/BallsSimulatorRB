@@ -6,7 +6,7 @@ public class ResetAllBalls : MonoBehaviour
     private List<Transform> ballTransforms = new List<Transform>();
     private List<Vector3> initialPositions = new List<Vector3>();
     private bool isResetting = false;
-    public float resetSpeed = 1.5f;
+    public float resetSpeed = 0.5f;
 
     public bool IsInitialReset { get; set; } = false; // Flag para identificar o reset inicial
     public bool HasCompleted { get; private set; } = false; // Flag para indicar conclusão do reset inicial

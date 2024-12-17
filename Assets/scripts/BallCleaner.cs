@@ -14,12 +14,6 @@ public class BallCleaner : MonoBehaviour
 
     void Start()
     {
-        // Certifique-se de que o script de visualização da cobertura está atribuído
-        if (ballCoverageVisualizer == null)
-        {
-            Debug.LogError("BallCoverageVisualizer não atribuído. Por favor, arraste o script BallCoverageVisualizer para o campo correspondente no Inspector.");
-        }
-
         // Iniciar o atraso para começar a verificar a cobertura
         Invoke(nameof(StartChecking), 10f); // Espera 10 segundos antes de começar a verificar
     }
@@ -44,6 +38,10 @@ if (coverage < coverageThreshold && !isPushing)
     Debug.Log($"Cobertura atingiu {coverage * 100}%, empurrando as bolinhas para fora.");
 }
 
+if (coverage <= 0.02f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
+{
+                Invoke(nameof(RemoveAllBalls), 4f);
+}
 if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
 {
     RemoveAllBalls();
@@ -63,8 +61,6 @@ if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls()
     {
         Camera mainCamera = ballCoverageVisualizer.mainCamera; // Usa a câmera principal referenciada no BallCoverageVisualizer
 
-        bool ballsPushed = false; // Flag para verificar se alguma bola foi empurrada
-
         foreach (GameObject ball in ballCoverageVisualizer.GetBalls())
         {
             if (ball == null) continue;
@@ -80,19 +76,6 @@ if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls()
             if (ballRigidbody != null)
             {
                 ballRigidbody.AddForce(directionToCenter * pushForce, ForceMode.Impulse);
-                ballsPushed = true;
-            }
-        }
-
-        if (ballsPushed)
-        {
-            // Checa novamente a cobertura da tela após o empurrão
-            float coverage = ballCoverageVisualizer.CalculateCoveragePercentage();
-
-            if (coverage <= 0.02f)
-            {
-                isPushing = false; // Para de empurrar as bolinhas quando a cobertura atingir 0%
-                Debug.Log("Cobertura da tela chegou a 0%, fim do empurrão.");
             }
         }
 

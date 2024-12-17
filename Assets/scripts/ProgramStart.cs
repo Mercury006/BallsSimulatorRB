@@ -25,8 +25,8 @@ public class ProgramStart : MonoBehaviour
             whiteCanvasGroup.alpha = 1f; // Define a opacidade inicial como 100%
         }
 
-        // Move as bolas para fora da tela após 1 segundo
-        Invoke(nameof(MoveBallsOut), 0.01f);
+        //Invoke(nameof(MoveBallsOut), 0.01f);
+        MoveBallsOut();
 
         // Ativa o reset após 4 segundos
         Invoke(nameof(ActivateReset), 3f);

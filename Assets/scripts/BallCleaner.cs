@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEditor;
 
-public class BallCleaner : MonoBehaviour
+public class BallCleaner : MonoBehaviour, IBallCleaner
 {
     public BallCoverageVisualizer ballCoverageVisualizer; // Referência direta no Inspector
     public float pushForce = 10f; // Força com a qual as bolinhas serão empurradas para fora da tela
@@ -11,6 +12,7 @@ public class BallCleaner : MonoBehaviour
     private bool isPushing = false; // Flag para verificar se as bolinhas estão sendo empurradas
     private bool hasRemovedBalls = false; // Flag para garantir que as bolinhas sejam removidas apenas uma vez
     private bool hasStartedChecking = false; // Para controlar quando iniciar a verificação
+    public SmoothTransition smoothtransiton;
 
     void Start()
     {
@@ -32,21 +34,21 @@ public class BallCleaner : MonoBehaviour
             // Verifica a porcentagem de cobertura atingiu o limite
             float coverage = ballCoverageVisualizer.CalculateCoveragePercentage();
 
-if (coverage < coverageThreshold && !isPushing)
-{
-    isPushing = true;
-    Debug.Log($"Cobertura atingiu {coverage * 100}%, empurrando as bolinhas para fora.");
-}
+            if (coverage < coverageThreshold && !isPushing)
+            {
+                isPushing = true;
+                Debug.Log($"Cobertura atingiu {coverage * 100}%, empurrando as bolinhas para fora.");
+            }
 
-if (coverage <= 0.02f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
-{
+            if (coverage <= 0.02f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
+            {
                 Invoke(nameof(RemoveAllBalls), 4f);
-}
-if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
-{
-    RemoveAllBalls();
-    hasRemovedBalls = true;
-}
+            }
+            if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls().Length > 0)
+            {
+                RemoveAllBalls();
+                hasRemovedBalls = true;
+            }
 
 
             if (isPushing)
@@ -96,12 +98,7 @@ if (coverage <= 0.0001f && !hasRemovedBalls && ballCoverageVisualizer.GetBalls()
 
         // Força a transição de cena após a remoção das bolinhas
         //FindFirstObjectByType<SceneTransition>()?.ChangeScene();
-        Invoke(nameof(ChangeScene), 1f);
+        Invoke(nameof(ChangeSceneWithSmoothTransition), 1f);
     }
-
-    public void ChangeScene()
-    {
-        Debug.Log("Tentando carregar a cena 'Video Interacao'...");
-        SceneManager.LoadScene("Video Interacao");
-    }
+    void ChangeSceneWithSmoothTransition() => smoothtransiton.ChangeScene();
 }

@@ -632,8 +632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balls: []
   mainCamera: {fileID: 1823688466}
-  showCoverage: 0
-  coverageThreshold: 0.7
+  showCoverage: 1
 --- !u!1 &249271109
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,8 +778,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 268976523}
-  - component: {fileID: 268976524}
   - component: {fileID: 268976525}
+  - component: {fileID: 268976526}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -803,19 +802,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &268976524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268976522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f722a68830454745b0ff093be66ae81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resetSpeed: 2
 --- !u!114 &268976525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,10 +820,23 @@ MonoBehaviour:
   smoothnessSlider: {fileID: 2022668102}
   impulseSlider: {fileID: 1692446523}
   maxDistance: 20
-  baseForceStrength: 5
+  baseForceStrength: 7
   falloffStrength: 10
   smoothness: 1
-  impulseMultiplier: 2
+  impulseMultiplier: 6
+--- !u!114 &268976526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268976522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f722a68830454745b0ff093be66ae81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetSpeed: 1
 --- !u!1 &280898185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,7 +1320,7 @@ MonoBehaviour:
   impulseText: {fileID: 763632778}
   resetSpeedText: {fileID: 997665884}
   forceFieldManager: {fileID: 268976525}
-  resetAllBalls: {fileID: 268976524}
+  resetAllBalls: {fileID: 268976526}
 --- !u!4 &459150292
 Transform:
   m_ObjectHideFlags: 0
@@ -1858,7 +1857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44debdb14dec1642a86707900f97d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cleaner: {fileID: 0}
+  Cleaner: {fileID: 214649642}
 --- !u!1 &706449159
 GameObject:
   m_ObjectHideFlags: 0
@@ -5407,7 +5406,7 @@ MonoBehaviour:
   spawnAreaSize: {x: 71.1, y: 36.8, z: 17.23}
   ballSizeRange: {x: 1.7, y: 2.3}
   forceFieldManager: {fileID: 268976525}
-  resetAllBalls: {fileID: 268976524}
+  resetAllBalls: {fileID: 268976526}
 --- !u!4 &1729898520
 Transform:
   m_ObjectHideFlags: 0
@@ -6921,10 +6920,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveBallsOutOfScreen: {fileID: 2018784003}
-  resetAllBalls: {fileID: 268976524}
+  resetAllBalls: {fileID: 268976526}
   ballCleaner: {fileID: 214649642}
   whiteCanvasGroup: {fileID: 1480380380}
-  fadeDuration: 2
+  fadeDuration: 1
 --- !u!4 &2018784002
 Transform:
   m_ObjectHideFlags: 0
@@ -6954,7 +6953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementAreaMin: {x: 137.7, y: -5.52, z: 0}
   movementAreaMax: {x: 74, y: 35.81, z: 0}
-  resetAllBalls: {fileID: 268976524}
+  resetAllBalls: {fileID: 0}
 --- !u!1 &2022668100
 GameObject:
   m_ObjectHideFlags: 0

@@ -604,7 +604,7 @@ MonoBehaviour:
   pushForce: 1.2
   coverageThreshold: 0.3
   smoothtransiton: {fileID: 666625402}
-  standby: {fileID: 1999693417}
+  standby: {fileID: 0}
 --- !u!4 &214649643
 Transform:
   m_ObjectHideFlags: 0
@@ -7487,7 +7487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementAreaMin: {x: 137.7, y: -5.52, z: 0}
   movementAreaMax: {x: 74, y: 35.81, z: 0}
-  resetAllBalls: {fileID: 268976526}
+  resetAllBalls: {fileID: 0}
 --- !u!1 &2022668100
 GameObject:
   m_ObjectHideFlags: 0

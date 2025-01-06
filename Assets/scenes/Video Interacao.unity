@@ -392,6 +392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 732221361}
   - component: {fileID: 732221360}
+  - component: {fileID: 732221363}
   - component: {fileID: 732221362}
   m_Layer: 0
   m_Name: VideoPlayer
@@ -470,6 +471,22 @@ MonoBehaviour:
   - {fileID: 32900000, guid: 216de3aa767e8d14a88f079d7bacac7b, type: 3}
   canvasGroup: {fileID: 34628554}
   fadeDuration: 0
+--- !u!114 &732221363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732221359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7045f971fde4d42a4de8d512a19668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 732221360}
+  nextSceneName: Bolas
+  delay: 1
+  animator: {fileID: 1386278499}
 --- !u!1 &1217445875
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +801,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1386278500}
   - component: {fileID: 1386278499}
-  - component: {fileID: 1386278501}
   m_Layer: 0
   m_Name: Transition
   m_TagString: Untagged
@@ -830,22 +846,6 @@ Transform:
   - {fileID: 1441097456}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1386278501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386278498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd7045f971fde4d42a4de8d512a19668, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 732221360}
-  nextSceneName: Bolas
-  delay: 1
-  animator: {fileID: 1386278499}
 --- !u!1 &1399137375
 GameObject:
   m_ObjectHideFlags: 0

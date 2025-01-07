@@ -5884,10 +5884,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d4305c6c8b45f4a9963734e4923aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 8060479777656056648, guid: ee0f206f3f9e6e8478c404d542adbdc2, type: 3}
+  ballPrefab: {fileID: 2546733333282702391, guid: dc1676b2189da444dab208a6d98db06e, type: 3}
   numberOfBalls: 3000
   spawnAreaSize: {x: 71.1, y: 36.8, z: 17.23}
-  ballSizeRange: {x: 1.7, y: 2.3}
+  ballSizeRange: {x: 20, y: 25}
   forceFieldManager: {fileID: 268976525}
   resetAllBalls: {fileID: 268976526}
 --- !u!4 &1729898520
@@ -6398,7 +6398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clearColorMode: 1
-  backgroundColorHDR: {r: 5.656854, g: 5.656854, b: 5.656854, a: 0}
+  backgroundColorHDR: {r: 1.7207955, g: 1.7207955, b: 1.7207955, a: 0}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2

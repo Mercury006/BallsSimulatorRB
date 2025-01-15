@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class VideoSceneTransition : MonoBehaviour
 {
     public VideoPlayer videoPlayer;        // Referência ao VideoPlayer
-    public string nextSceneName;           // Nome da cena para a qual deseja trocar
     public float delay = 0f;               // Delay adicional após o fim do vídeo (para testes)
     public Animator animator;
 
@@ -20,7 +19,8 @@ public class VideoSceneTransition : MonoBehaviour
     void OnVideoFinished(VideoPlayer vp)
     {
         Debug.Log("Vídeo terminou. Trocando de cena após delay...");
-        Invoke(nameof(StartFadeOut), delay);
+        //StartCoroutine(StartFadeOut(0f));
+        StartFadeOut();
     }
 
     // Função para trocar de cena
@@ -30,7 +30,6 @@ public class VideoSceneTransition : MonoBehaviour
     }
     public void OnFadeCompleteVideos()
     {
-        Debug.Log($"Carregando cena '{nextSceneName}'...");
         SceneManager.LoadScene("Bolas");
     }
 }

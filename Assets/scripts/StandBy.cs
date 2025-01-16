@@ -66,6 +66,7 @@ public class StandBy : MonoBehaviour
         isStandBy = true;
         videoDisplayObject.SetActive(true);
         videoPlayer.Play();
+        videoPlayer.loopPointReached += OnVideoFinished; // Adiciona o listener para quando o vídeo termina
         Debug.Log("Entrando no modo StandBy");
         StartCoroutine(FadeIn());
     }
@@ -73,8 +74,16 @@ public class StandBy : MonoBehaviour
     void StopStandBy()
     {
         isStandBy = false;
+        videoPlayer.loopPointReached -= OnVideoFinished; // Remove o listener
         Debug.Log("Saindo do modo StandBy");
         StartCoroutine(FadeOut());
+    }
+
+    void OnVideoFinished(VideoPlayer vp)
+    {
+        Debug.Log("Vídeo terminou. Saindo do modo StandBy.");
+        StopStandBy();
+        ResetTimer();
     }
 
     void ResetTimer()
